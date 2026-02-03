@@ -1,0 +1,29 @@
+Command 1: nano signal_demo.c
+Created C program to demonstrate signal handling with SIGTERM and SIGINT signals.
+
+signal(SIGTERM, handle_sigterm) - Tells parent to run handle_sigterm() when SIGTERM arrives
+
+signal(SIGINT, handle_sigint) - Tells parent to run handle_sigint() when SIGINT arrives
+
+fork() - Creates child processes
+
+getppid() - Gets parent process ID
+
+kill(getppid(), SIGTERM) - Child sends SIGTERM signal to parent
+
+while (!should_exit) - Parent runs until signal sets should_exit = 1
+
+wait(NULL) - Parent waits for children to finish
+
+
+Command 2: gcc -o signal_demo signal_demo.c
+Compiled the C program into executable named signal_demo.
+
+Command 3: ./signal_demo
+Ran the program. Parent started, created two children. Child 1 sent SIGTERM after 5 seconds, parent handled it and exited gracefully.
+
+Command 4: cat signal_demo.c
+Viewed source code. Observed signal() function registering handlers, kill() sending signals, and graceful exit logic.
+
+Command 5: Tested Ctrl+C
+Ran program and pressed Ctrl+C after few seconds. Parent caught SIGINT, showed message, and exited gracefully.

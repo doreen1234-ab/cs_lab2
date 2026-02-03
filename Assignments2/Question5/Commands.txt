@@ -1,0 +1,111 @@
+1. nano sync.sh
+#!/bin/bash
+
+echo " DIRECTORY COMPARISON TOOL "
+echo ""
+
+if [ ! -d "dirA" ]; then
+    echo "Error: dirA not found"
+    exit 1
+fi
+
+if [ ! -d "dirB" ]; then
+    echo "Error: dirB not found"
+    exit 1
+fi
+
+echo "Comparing dirA and dirB..."
+echo ""
+
+echo "1. Files ONLY in dirA:"
+found_in_a=false
+for file in dirA/*; do
+    if [ -f "$file" ]; then
+        filename=$(basename "$file")
+        if [ ! -f "dirB/$filename" ]; then
+            echo "   - $filename"
+            found_in_a=true
+        fi
+    fi
+done
+if [ "$found_in_a" = false ]; then
+    echo "   (No unique files in dirA)"
+fi
+
+echo ""
+
+echo "2. Files ONLY in dirB:"
+found_in_b=false
+for file in dirB/*; do
+    if [ -f "$file" ]; then
+        filename=$(basename "$file")
+        if [ ! -f "dirA/$filename" ]; then
+            echo "   - $filename"
+            found_in_b=true
+        fi
+    fi
+done
+if [ "$found_in_b" = false ]; then
+    echo "   (No unique files in dirB)"
+fi
+
+echo ""
+
+echo "3. Files in BOTH directories:"
+common_files=false
+for file in dirA/*; do
+    if [ -f "$file" ]; then
+        filename=$(basename "$file")
+        if [ -f "dirB/$filename" ]; then
+            echo "   - $filename:"
+            
+            # Method 1: Use cmp (silent comparison)
+            if cmp -s "dirA/$filename" "dirB/$filename"; then
+                echo "      CONTENTS MATCH"
+            else
+                echo "     CONTENTS DIFFER"
+                
+            fi
+            common_files=true
+        fi
+    fi
+done
+if [ "$common_files" = false ]; then
+    echo "   (No common files)"
+fi
+
+echo ""
+echo " COMPARISON COMPLETE "
+
+2. chmod +x sync.sh
+
+3. mkdir -p dirA dirB
+
+4. echo "This is file1 content" > dirA/file1.txt
+echo "Content of file2" > dirA/file2.txt
+echo "Only in directory A" > dirA/onlyA.txt
+echo "Same name but different content" > dirA/common.txt
+
+5. echo "This is file1 content" > dirB/file1.txt
+echo "Different content here" > dirB/file2.txt
+echo "ONly in directory B" > dirB/onlyB.txt
+echo "Same name but different content" > dirB/common.txt
+echo "Another B file" > dirB/another.txt
+
+6. echo "Identical content" > dirA/identical.txt
+echo "Identical content" > dirB/identical.txt
+
+7. ./sync.sh
+
+8. Test error handling - missing dirA
+mv dirA dirA_backup
+./sync.sh
+mv dirA_backup dirA
+
+9. Test error handling - missing dirB
+mv dirB dirB_backup
+./sync.sh
+mv dirB_backup dirB
+
+10. cat sync.sh
+

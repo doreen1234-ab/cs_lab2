@@ -1,0 +1,30 @@
+Command 1: nano emailcleaner.sh
+shell script file was created using nano editor. This script will process emails.txt and separate valid from invalid emails.
+
+Command 2: chmod +x emailcleaner.sh
+the script was made executable so it can run with ./emailcleaner.sh. Without this permission, the script cannot be executed directly.
+
+Command 3: Created emails.txt test file
+A test file with 23 email addresses including valid, invalid, and duplicate entries was created. This provides data to test the script.
+
+Command 4: ./emailcleaner.sh
+The script processed emails.txt and created valid.txt and invalid.txt. It found 13 valid emails and 9 invalid emails.
+
+Command 5: cat valid.txt
+Displayed the valid email addresses. 13 unique emails without duplicates, all matching the pattern letters/digits@letters.com.
+
+Command 6: cat invalid.txt
+Displayed the invalid email addresses containing various issues like dots in username, wrong domain endings, missing @ symbol, etc.
+
+Command 7: wc -l valid.txt invalid.txt
+Counted lines: valid.txt has 13 emails, invalid.txt has 9 emails. Total 22 emails processed from the original 23 (1 was duplicate).
+
+Command 8: sort emails.txt | uniq -d
+Found duplicate emails in the original file."john@example.com" appears twice
+
+Command 9: sort valid.txt | uniq -d
+Checked for duplicates in valid.txt. No output means all duplicates were successfully removed as required.
+
+Command 10: Tested error handling
+When emails.txt doesn't exist, script shows "Error: emails.txt not found" 
+

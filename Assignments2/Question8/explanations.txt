@@ -1,0 +1,30 @@
+Command 1: nano bg_move.sh
+Created bg_move.sh script that moves files to backup/ directory using background processes.
+
+Command 2: chmod +x bg_move.sh
+Made the script executable with execute permission.
+
+Command 3: Created test directory with files
+Created test_files directory with 5 .txt files for testing.
+
+Command 4: Showed directory before moving
+Listed all files in test_files. Confirmed 5 files exist before running script.
+
+Command 5: ./bg_move.sh test_files
+Ran the script. Output showed parent PID and each file move with its background process PID. All files moved simultaneously in background.
+
+Command 6: Checked directory after moving
+Original directory now only has backup/ folder. Backup folder contains all 5 moved files. Confirmed move was successful.
+
+Command 7: Tested error - no argument
+Ran script without directory argument. Got "Error: Please provide a directory path".
+
+Command 8: Tested error - missing directory
+Ran script with non-existent directory. Got "Error: Directory '/no/path' not found" error handling works.
+
+Command 9: Tested empty directory
+Created empty_dir and ran script. Got "No files found to move" message. Backup directory was created but empty.
+
+Command 10: cat bg_move.sh
+Viewed script code. Observed use of & for background processes, $! to get PID, $$ for parent PID, wait for synchronization.
+

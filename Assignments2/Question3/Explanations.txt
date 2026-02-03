@@ -1,0 +1,28 @@
+1. Created validate_results.sh script
+   - Script reads marks.txt file with student data
+   - Each line has: RollNo, Name, Marks1, Marks2, Marks3
+   - Passing marks for each subject is 33
+
+2. Created marks.txt with 8 student records:
+   
+3. Made script executable: chmod +x validate_results.sh
+   - Added execute permission to run the script
+
+4. Ran script: ./validate_results.sh
+ 
+5. Script logic explained:
+   - Reads each line using while loop with IFS=',' (comma separator)
+   - Checks each mark against PASS_MARKS=33 using -lt (less than)
+   - Counts how many subjects failed for each student
+   - If failed count = 1: prints "Failed in ONE subject"
+   - If failed count = 0: prints "Passed in ALL subjects"
+   - Keeps counters for each category
+
+6.  Analysis of 8 students:
+   - 4 students failed exactly 1 subject
+   - 4 students passed all subjects
+
+7. Error handling tested:
+   - When marks.txt doesn't exist: "Error: marks.txt not found!"
+   - Script exits with error code 1
+

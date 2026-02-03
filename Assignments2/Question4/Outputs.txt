@@ -1,0 +1,47 @@
+1. Processing...
+Email cleaning complete
+Valid emails found: 13(saved in valid.txt)
+Invalid emails found: 9 (saved in invalid.txt)
+
+Sample of valid emails:
+357@abc.com
+admin@server.com
+alice@test.com
+
+Sample of invalid emails:
+user@com
+user@company
+user@.com
+
+2. 357@abc.com
+admin@server.com
+alice@test.com
+box@yahoo.com
+hello@world.com
+jane246@gmail.com
+john@example.com
+sam@company.com
+test@email.com
+test@test.com
+user111@company.com
+user@name.com
+USER@NAME.COM
+
+3. user@com
+user@company
+user@.com
+invalid-email@com
+@nousername.com
+test@246.com
+noatsign.com
+wrong@email.net
+
+4. 13 valid.txt
+9 invalid.txt
+22 total
+
+5. john@example.com
+
+6. No output upon execution
+
+7. Error: emails.txt not found

@@ -1,0 +1,21 @@
+ 1.Analysis complete
+   Total log entries: 4
+   INFO: 1, WARNING: 1, ERROR: 2
+   Most recent ERROR: 2025-01-12 10:17:10 ERROR Network timeout
+   Report saved to: logsummary_2025-01-12.txt
+
+2. Error: File 'abcd.log' not found
+
+3.  Error: Please provide log file name
+
+4. LOG ANALYSIS REPORT
+Generated on: Sun Feb  1 15:46:31 UTC 2026
+Log file: sample.log
+
+Total entries: 4
+INFO messages: 1
+WARNING messages: 1
+ERROR messages: 2
+
+Most recent ERROR:
+2025-01-12 10:17:10 ERROR Network timeout

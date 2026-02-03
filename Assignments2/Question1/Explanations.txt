@@ -1,0 +1,23 @@
+1. Created script: nano analyze.sh
+   - Made a new file called analyze.sh
+   - Wrote the code that checks files and folders
+
+2. Made it executable: chmod +x analyze.sh
+   - Changed permissions so script can run
+   - Without this, can't use ./analyze.sh
+
+3. Tested with file: ./analyze.sh test.txt
+   - Script saw it was a file
+   - Counted 1 line, 2 words, 12 characters
+
+4. Tested with folder: ./analyze.sh test_folder
+   - Script saw it was a folder
+   - Found 2 files total, both are .txt files
+
+5. Tested no argument: ./analyze.sh
+   - Script checked if argument given
+   - Showed error when no argument
+
+6. Tested bad path: ./analyze.sh nothinghere
+   - Script checked if path exists
+   - Showed error when not found

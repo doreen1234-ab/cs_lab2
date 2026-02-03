@@ -1,0 +1,23 @@
+ BACKGROUND FILE MOVER 
+
+Moving files from: test_files
+Parent process PID: 300
+
+Moving: file1.txt (Background PID: 304)
+Moving: file2.txt (Background PID: 307)
+Moving: file3.txt (Background PID: 310)
+Moving: file4.txt (Background PID: 313)
+Moving: file5.txt (Background PID: 316)
+
+Total files to move: 5
+Waiting for all background moves to complete...
+
+ MOVE COMPLETE 
+All 5 files moved to: test_files/backup
+Check backup directory:
+total 5
+-rw-r--r-- 1 user user 15 Feb 3 14:16 file1.txt
+-rw-r--r-- 1 user user 15 Feb 3 14:16 file2.txt
+-rw-r--r-- 1 user user 15 Feb 3 14:16 file3.txt
+-rw-r--r-- 1 user user 15 Feb 3 14:16 file4.txt
+-rw-r--r-- 1 user user 15 Feb 3 14:16 file5.txt

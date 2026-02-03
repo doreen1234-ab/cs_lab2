@@ -1,0 +1,12 @@
+1.	File: test.txt
+	Lines: 1
+	Words: 2
+	Characters: 12
+
+2.	Directory: test_folder
+	Total files: 2
+	Text files (.txt): 2
+
+3.	Error: Please provide exactly one argument
+
+4.	Error: 'nothinghere' does not exist

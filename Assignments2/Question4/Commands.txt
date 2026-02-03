@@ -1,0 +1,82 @@
+ 1. nano emailcleaner.sh
+
+#!/bin/bash
+
+if [ ! -f "emails.txt" ]; then
+    echo "Error: emails.txt not found"
+    exit 1
+fi
+
+echo "Processing..."
+
+VALID_PATTERN="^[a-zA-Z0-9]+@[a-zA-Z]+\\.com$"
+
+
+grep -E -i "$VALID_PATTERN" emails.txt > valid_temp.txt
+
+
+grep -v -E -i "$VALID_PATTERN" emails.txt > invalid.txt
+
+
+sort valid_temp.txt | uniq > valid.txt
+
+
+rm valid_temp.txt
+
+valid_count=$(wc -l < valid.txt 2>/dev/null || echo "0")
+invalid_count=$(wc -l < invalid.txt 2>/dev/null || echo "0")
+
+echo "Email cleaning complete"
+echo "Valid emails found: $valid_count (saved in valid.txt)"
+echo "Invalid emails found: $invalid_count (saved in invalid.txt)"
+echo ""
+echo "Sample of valid emails:"
+head -3 valid.txt 2>/dev/null || echo "No valid emails found"
+echo ""
+echo "Sample of invalid emails:"
+head -3 invalid.txt 2>/dev/null || echo "No invalid emails found"
+
+2. chmod +x emailcleaner.sh
+
+3. cat > emails.txt << 'END'
+john@example.com
+user@com
+jane246@gmail.com
+user@company
+box@yahoo.com
+user@.com
+invalid-email@com
+@nousername.com
+test@246.com
+noatsign.com
+sam@company.com
+test@test.com
+alice@test.com
+hello@world.com
+john@example.com
+admin@server.com
+357@abc.com
+user111@company.com
+wrong@email.net
+test.email@domain.com
+user@name.com
+test@email.com
+USER@NAME.COM
+END
+
+4. ./emailcleaner.sh
+
+5. cat valid.txt
+
+6. cat invalid.txt
+
+7. wc -l valid.txt invalid.txt
+
+8. sort emails.txt | uniq -d
+
+9. sort valid.txt | uniq -d
+
+10. mv emails.txt emails_backup.txt
+./emailcleaner.sh
+
+

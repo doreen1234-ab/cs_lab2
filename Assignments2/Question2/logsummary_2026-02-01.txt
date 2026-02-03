@@ -1,0 +1,11 @@
+ LOG ANALYSIS REPORT
+Generated on: Sun Feb  ! 15:46:31 UTC 2026
+Log file: sample.log
+
+Total entries: 4
+INFO messages: 1
+WARNING messages: 1
+ERROR messages: 2
+
+Most recent ERROR:
+2025-01-12 10:17:10 ERROR Network timeout

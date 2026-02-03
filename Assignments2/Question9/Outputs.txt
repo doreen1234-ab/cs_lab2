@@ -1,0 +1,27 @@
+Parent Process Started. PID: 344
+Creating 5 child processes...
+
+Child 1 created with PID: 345
+Child 2 created with PID: 346
+Child 3 created with PID: 347
+Child 4 created with PID: 348
+
+Parent waiting for all children to finish...
+Child 5 created with PID: 349
+Child 1 (PID: 345) is exiting
+Parent: Cleaned up child with PID: 345
+   Child exited normally with status: 0
+Child 2 (PID: 346) is exiting
+Parent: Cleaned up child with PID: 346
+   Child exited normally with status: 0
+Child 3 (PID: 347) is exiting
+Parent: Cleaned up child with PID: 347
+   Child exited normally with status: 0
+Child 4 (PID: 348) is exiting
+Parent: Cleaned up child with PID: 348
+   Child exited normally with status: 0
+Child 5 (PID: 349) is exiting
+Parent: Cleaned up child with PID: 349
+   Child exited normally with status: 0
+
+All children cleaned up. Parent exiting.

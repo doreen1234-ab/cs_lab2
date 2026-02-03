@@ -1,0 +1,8 @@
+user@com
+user@company
+user@.com
+invalid-email@com
+@nousername.com
+test@246.com
+noatsign.com
+wrong@email.net

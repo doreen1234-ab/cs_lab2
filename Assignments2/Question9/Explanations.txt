@@ -1,0 +1,38 @@
+Command 1: nano zombie_prevent.c
+Created C program to demonstrate zombie process prevention using fork() and wait().
+
+fork() - Creates a child process
+
+Returns 0 to child process
+
+Returns child's PID to parent process
+
+Returns -1 if error
+
+getpid() - Gets current process ID
+
+sleep(i) - Makes child wait before exiting
+
+exit(0) - Child exits with status 0 (success)
+
+wait(&status) - Parent waits for child to finish
+
+Prevents zombie processes
+
+Gets child's exit status
+
+WIFEXITED(status) - Checks if child exited normally
+
+WEXITSTATUS(status) - Gets child's exit code
+
+
+Command 2: gcc -o zombie_prevent zombie_prevent.c
+Compiled the C program using gcc compiler. Created executable file named zombie_prevent.
+
+Command 3: ./zombie_prevent
+Ran the program. Output showed parent creating 5 children, each with different PIDs. Parent waited and cleaned up each child as they exited, preventing zombies.
+
+Command 4: cat zombie_prevent.c
+Viewed the C source code. Observed use of fork(), wait(), getpid(), and exit() system calls.
+
+

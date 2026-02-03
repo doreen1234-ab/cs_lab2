@@ -1,0 +1,14 @@
+ STUDENT ANALYSIS 
+
+Failed in ONE subject: Benedict Smith (101)
+Passed in ALL subjects: Janaiah Wilson (102)
+Failed in ONE subject: Barbara Doe (103)
+Passed in ALL subjects: Allison Chen (104)
+Failed in ONE subject: Charles Lee (105)
+Passed in ALL subjects: Daniel Brown (106)
+Failed in ONE subject: Emmanuel Miller (107)
+Failed in ONE subject: Frankeinstein Davis (108)
+
+ SUMMARY 
+Students failed in exactly ONE subject: 4
+Students passed in ALL subjects: 4

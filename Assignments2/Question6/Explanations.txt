@@ -1,0 +1,18 @@
+Command 1: nano metrics.sh
+Created the metrics.sh script to analyze text files. The script finds longest/shortest words, average length, and unique words.
+
+Command 2: chmod +x metrics.sh
+Made the script executable with execute permission.
+
+Command 3: Created input.txt test file
+Created a sample text file with 4 lines containing words, punctuation, and repeated words for testing.
+
+Command 4: ./metrics.sh
+Ran the analyzer. Output showed: longest word 'repeated' (8 chars), shortest word 'a' (1 char), average length 4.08, 24 unique words from 34 total words.
+
+Command 5: cat input.txt
+Displayed the input file content. Confirmed it contains the test text with various words and punctuation.
+
+Command 6: cat metrics.sh
+Viewed script code. Observed use of tr, sort, uniq, wc, awk, bc commands in pipelines as required.
+

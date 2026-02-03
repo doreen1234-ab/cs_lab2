@@ -1,0 +1,83 @@
+1. nano patterns.sh
+
+#!/bin/bash
+
+echo " WORD PATTERN CLASSIFIER "
+echo ""
+
+if [ $# -ne 1 ]; then
+    echo "Error: Please provide a text filename"
+    exit 1
+fi
+
+input_file="$1"
+
+if [ ! -f "$input_file" ]; then
+    echo "Error: File '$input_file' not found"
+    exit 1
+fi
+
+> vowels.txt
+> consonants.txt
+> mixed.txt
+
+echo "Processing $input_file..."
+echo ""
+
+while IFS= read -r line; do
+    for word in $line; do
+        clean_word=$(echo "$word" | tr '[:upper:]' '[:lower:]' | tr -d '[:punct:]')
+        
+        if [ -z "$clean_word" ]; then
+            continue
+        fi
+        
+
+        if echo "$clean_word" | grep -q '^[aeiou]\+$'; then
+            echo "$word" >> vowels.txt
+        
+        elif echo "$clean_word" | grep -q '^[bcdfghjklmnpqrstvwxyz]\+$'; then
+            echo "$word" >> consonants.txt
+        
+        elif echo "$clean_word" | grep -q '^[bcdfghjklmnpqrstvwxyz]' && echo "$clean_word" | grep -q '[aeiou]'; then
+            echo "$word" >> mixed.txt
+        fi
+    done
+done < "$input_file"
+
+vowels_count=$(wc -l < vowels.txt 2>/dev/null || echo "0")
+consonants_count=$(wc -l < consonants.txt 2>/dev/null || echo "0")
+mixed_count=$(wc -l < mixed.txt 2>/dev/null || echo "0")
+
+echo " CLASSIFICATION RESULTS "
+echo "Words with only vowels: $vowels_count (saved in vowels.txt)"
+echo "Words with only consonants: $consonants_count (saved in consonants.txt)"
+echo "Words starting with consonant (mixed): $mixed_count (saved in mixed.txt)"
+echo ""
+echo "Total words processed: $((vowels_count + consonants_count + mixed_count))"
+
+2. chmod +x patterns.sh
+
+3. cat > sample.txt << 'END'
+Hello World! This is just testing
+apple banana oranges dog cat cow
+aeiou miracle learn crypts
+test queue aeiou bcdfgh xyz
+END
+
+4. ./patterns.sh sample.txt
+
+5. cat vowels.txt
+
+6. cat consonants.txt
+
+7. cat mixed.txt
+
+8. Test error handling - no filename
+./patterns.sh
+
+9. Test error handling - file doesn't exist
+./patterns.sh notexist.txt
+
+10. View the script code
+cat patterns.sh

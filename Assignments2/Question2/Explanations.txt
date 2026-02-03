@@ -1,0 +1,37 @@
+
+1. Created log_analyzer.sh script
+   - Script accepts log filename as argument
+   - Validates file exists and is readable
+   - Counts log entries by level (INFO, WARNING, ERROR)
+   - Finds most recent ERROR message
+   - Generates report file with summary
+
+2. Created sample.log:
+   2025-01-12 10:15:22 INFO System started
+   2025-01-12 10:16:01 ERROR Disk not found
+   2025-01-12 10:16:45 WARNING High memory usage
+   2025-01-12 10:17:10 ERROR Network timeout
+
+3. Made script executable: chmod +x log_analyzer.sh
+   - Added execute permission to run script
+
+4. Tested script: ./log_analyzer.sh sample.log
+   - Successfully processed 4 log entries as given in question
+   - Correctly counted: 1 INFO, 1 WARNING, 2 ERROR
+   - Found most recent ERROR: "Network timeout" at 10:17:10
+   - Generated report file with date in filename
+
+5. Tested error handling - no file: ./log_analyzer.sh abcd.log
+   - Script checked file existence before processing
+   - Showed clear error message as required
+
+6. Tested error handling - no argument: ./log_analyzer.sh
+   - Script validated argument count
+   - Showed appropriate error message
+
+7. Verified report file:
+   - Report contains all required information
+   - Includes total entries count (4)
+   - Shows breakdown by log level (INFO:1, WARNING:1, ERROR:2)
+   - Displays most recent ERROR message correctly
+   - Includes generation timestamp

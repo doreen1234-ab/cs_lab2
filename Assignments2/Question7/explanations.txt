@@ -1,0 +1,33 @@
+Command 1: nano patterns.sh
+Created the patterns.sh script that classifies words into three categories based on vowel/consonant patterns.
+
+Command 2: chmod +x patterns.sh
+Made the script executable so it can run with ./patterns.sh filename.txt.
+
+Command 3: Created sample.txt test file
+Created a text file with 5 lines containing various words to test all three pattern categories.
+
+Command 4: ./patterns.sh sample.txt
+Ran the pattern classifier. Output showed: 3 words with only vowels, 9 words with only consonants, 11 mixed words starting with consonants.
+
+Command 5: Checked vowels.txt
+Displayed words containing only vowels: "aeiou", "aeiou". These words have only a,e,i,o,u letters.
+
+Command 6: Checked consonants.txt
+Displayed words containing only consonants. No vowels in these words.
+
+Command 7: Checked mixed.txt
+Displayed words starting with consonant and containing both vowels/consonants
+
+Command 8: Counted words in each file
+vowels.txt has 2 lines, consonants.txt has 3 lines, mixed.txt has 13 lines. Total 18 words processed.
+
+Command 9: Tested error - no filename
+Ran script without filename. Got "Error: Please provide a text filename"
+
+Command 10: Tested error - missing file
+Ran script with non-existent file. Got "Error: File 'notexist.txt' not found" error handling works.
+
+Command 11: cat patterns.sh
+Viewed script code. Observed it uses grep with regex patterns, tr for case conversion, and file redirection.
+

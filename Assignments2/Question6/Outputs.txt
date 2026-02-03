@@ -1,0 +1,10 @@
+ TEXT FILE METRICS ANALYZER 
+
+Analyzing input.txt...
+
+ ANALYSIS RESULTS 
+Longest word: 'repeated' (8 characters)
+Shortest word: 'a' (1 character)
+Average word length: 4.08
+Total unique words: 24
+Total words: 34

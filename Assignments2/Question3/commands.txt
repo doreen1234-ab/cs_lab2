@@ -1,0 +1,68 @@
+1. nano validate_results.sh
+	
+#!/bin/bash
+PASS_MARKS=33
+
+failed_one_count=0
+passed_all_count=0
+if [ ! -f "marks.txt" ]; then
+    echo "Error: marks.txt not found"
+    exit 1
+fi
+
+echo " STUDENT ANALYSIS "
+echo ""
+while IFS=',' read -r rollno name marks1 marks2 marks3; do
+    # Remove extra spaces
+    rollno=$(echo $rollno | xargs)
+    name=$(echo $name | xargs)
+    marks1=$(echo $marks1 | xargs)
+    marks2=$(echo $marks2 | xargs)
+    marks3=$(echo $marks3 | xargs)
+    
+
+    failed=0
+    if [ $marks1 -lt $PASS_MARKS ]; then
+        failed=$((failed + 1))
+    fi
+    if [ $marks2 -lt $PASS_MARKS ]; then
+        failed=$((failed + 1))
+    fi
+    if [ $marks3 -lt $PASS_MARKS ]; then
+        failed=$((failed + 1))
+    fi
+    
+  
+    if [ $failed -eq 1 ]; then
+        echo "Failed in ONE subject: $name ($rollno)"
+        failed_one_count=$((failed_one_count + 1))
+    elif [ $failed -eq 0 ]; then
+        echo "Passed in ALL subjects: $name ($rollno)"
+        passed_all_count=$((passed_all_count + 1))
+    fi
+    
+done < "marks.txt"
+
+echo ""
+echo " SUMMARY "
+echo "Students failed in exactly ONE subject: $failed_one_count"
+echo "Students passed in ALL subjects: $passed_all_count"
+
+2. chmod +x validate_results.sh
+
+3. cat > marks.txt << 'END'
+101, Benedict Smith, 46, 68, 31
+102, Janaiah Wilson, 79, 90, 93
+103, Barbara Doe, 41, 26, 56
+104, Allison Chen, 33, 33, 33
+105, Charles Lee, 51, 21, 61
+106, Daniel Brown, 70, 80, 90
+107, Emmanuel Miller, 26, 51, 40
+108, Frankeinstein Davis, 70, 60, 35
+END
+
+4. ./validate_results.sh
+
+5. mv marks.txt backup.txt
+  ./validate_results.sh
+

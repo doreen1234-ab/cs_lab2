@@ -1,0 +1,4 @@
+Mary has a little lamb.
+hey, this is a test file for text analysis
+the quick brown fox jumps over the lazy duck
+the quick brown fox jumps again. Repeated words: the quick brown

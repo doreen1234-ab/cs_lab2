@@ -1,0 +1,22 @@
+ DIRECTORY COMPARISON TOOL
+
+Comparing dirA and dirB...
+
+ Files ONLY in dirA:
+   - onlyA.txt
+
+ Files ONLY in dirB:
+   - another.txt
+   - onlyB.txt
+
+ Files in BOTH directories:
+   - common.txt:
+     CONTENTS DIFFER
+   - file1.txt:
+     CONTENTS MATCH
+   - file2.txt:
+     CONTENTS DIFFER
+   - identical.txt:
+     CONTENTS MATCH
+
+ COMPARISON COMPLETE 

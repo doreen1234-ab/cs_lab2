@@ -1,0 +1,13 @@
+357@abc.com
+admin@server.com
+alice@test.com
+box@yahoo.com
+hello@world.com
+jane246@gmail.com
+john@example.com
+sam@company.com
+test@email.com
+test@test.com
+user111@company.com
+user@name.com
+USER@NAME.COM

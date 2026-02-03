@@ -1,0 +1,10 @@
+ WORD PATTERN CLASSIFIER 
+
+Processing sample.txt...
+
+ CLASSIFICATION RESULTS 
+Words with only vowels: 2 (saved in vowels.txt)
+Words with only consonants: 3 (saved in consonants.txt)
+Words starting with consonant (mixed): 13 (saved in mixed.txt)
+
+Total words processed: 18

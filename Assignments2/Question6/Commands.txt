@@ -1,0 +1,64 @@
+1. nano metrics.sh
+
+#!/bin/bash
+
+echo "TEXT FILE METRICS ANALYZER"
+echo ""
+if [ ! -f "input.txt" ]; then
+    echo "Error: input.txt not found"
+    exit 1
+fi
+if [ ! -s "input.txt" ]; then
+    echo "Error: input.txt is empty"
+    exit 1
+fi
+
+echo "Analyzing input.txt..."
+echo ""
+
+words=$(tr '[:upper:]' '[:lower:]' < input.txt | tr -s '[:punct:][:space:]' '\n' | grep -v '^$')
+total_words=$(echo "$words" | wc -w)
+
+if [ $total_words -eq 0 ]; then
+    echo "Error: No words found in the file!"
+    exit 1
+fi
+
+
+longest=$(echo "$words" | awk '{print length, $0}' | sort -nr | head -1 | cut -d' ' -f2-)
+longest_len=$(echo -n "$longest" | wc -m)
+
+
+shortest=$(echo "$words" | awk '{print length, $0}' | sort -n | grep -v "^0" | head -1 | cut -d' ' -f2-)
+shortest_len=$(echo -n "$shortest" | wc -m)
+
+
+total_chars=$(echo "$words" | tr -d '\n' | wc -m)
+average=$(echo "scale=2; $total_chars / $total_words" | bc)
+
+
+unique_words=$(echo "$words" | sort | uniq | wc -l)
+
+
+echo " ANALYSIS RESULTS "
+echo "Longest word: '$longest' ($longest_len characters)"
+echo "Shortest word: '$shortest' ($shortest_len characters)"
+echo "Average word length: $average"
+echo "Total unique words: $unique_words"
+echo "Total words: $total_words"
+	
+2. chmod +x metrics.sh
+
+3. cat > input.txt << 'END'
+Mary has a little lamb.
+hey, this is a test file for text analysis
+the quick brown fox jumps over the lazy duck
+the quick brown fox jumps again. Repeated words: the quick brown
+END
+
+4. ./metrics.sh
+
+5. View the script code
+cat metrics.sh
+
+

@@ -1,0 +1,105 @@
+1. nano bg_move.sh
+
+#!/bin/bash
+
+echo " BACKGROUND FILE MOVER "
+echo ""
+
+
+if [ $# -ne 1 ]; then
+    echo "Error: Please provide a directory path"
+    exit 1
+fi
+
+dir_path="$1"
+
+
+if [ ! -d "$dir_path" ]; then
+    echo "Error: Directory '$dir_path' not found"
+    exit 1
+fi
+
+echo "Moving files from: $dir_path"
+echo "Parent process PID: $$"
+echo ""
+
+
+backup_dir="$dir_path/backup"
+mkdir -p "$backup_dir"
+
+
+pids=()
+
+
+count=0
+for file in "$dir_path"/*; do
+  
+    if [ -f "$file" ]; then
+        filename=$(basename "$file")
+        
+      
+        if [ "$(dirname "$file")" != "$backup_dir" ]; then
+            # Move file in background
+            mv "$file" "$backup_dir/" &
+            
+     
+            pid=$!
+            pids+=($pid)
+            count=$((count + 1))
+            
+            echo "Moving: $filename (Background PID: $pid)"
+        fi
+    fi
+done
+
+if [ $count -eq 0 ]; then
+    echo "No files found to move in '$dir_path'"
+    echo "Backup directory created at: $backup_dir"
+    exit 0
+fi
+
+echo ""
+echo "Total files to move: $count"
+echo "Waiting for all background moves to complete..."
+
+
+for pid in "${pids[@]}"; do
+    wait $pid
+done
+
+echo ""
+echo " MOVE COMPLETE "
+echo "All $count files moved to: $backup_dir"
+echo "Check backup directory:"
+ls -l "$backup_dir"
+
+
+2. chmod +x bg_move.sh
+
+3. mkdir -p test_files
+
+for i in 1 2 3 4 5; do
+    echo "File $i content" > "test_files/file$i.txt"
+done
+
+4. ls -la test_files/
+
+5. ./bg_move.sh test_files
+
+6. ls -la test_files/
+ls -la test_files/backup/
+
+7. Test error handling - no argument
+./bg_move.sh
+
+8. Test error handling - directory doesn't exist
+./bg_move.sh /no/path
+
+9. Create empty directory test
+mkdir empty_dir
+./bg_move.sh empty_dir
+rmdir empty_dir
+
+10. View the script code
+cat bg_move.sh
+

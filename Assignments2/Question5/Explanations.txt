@@ -1,0 +1,27 @@
+Command 1: nano sync.sh
+Created the sync.sh script to compare two directories. The script will list unique files and compare common files.
+
+Command 2: chmod +x sync.sh
+Made the script executable. This allows running it with ./sync.sh command.
+
+Command 3: mkdir -p dirA dirB
+Created two test directories dirA and dirB. These will be compared by the script.
+
+Command 4: Created files in dirA
+Created 4 test files in dirA: file1.txt, file2.txt, onlyA.txt, and common.txt. These simulate various comparison scenarios.
+
+Command 5: Created files in dirB
+Created 5 test files in dirB: matching file1.txt, different file2.txt, onlyB.txt, common.txt with different content, and another.txt.
+
+Command 6: Created identical file
+Created identical.txt with same content in both directories. This tests the matching files scenario.
+
+Command 7: ./sync.sh
+Ran the comparison script. Output showed: onlyA.txt only in dirA, onlyB.txt and another.txt only in dirB, and comparisons of common files.
+
+Command 8: Tested error - missing dirA
+Moved dirA away and ran script. Got "Error: dirA not found" confirming proper error handling.
+
+Command 9: Tested error - missing dirB
+Moved dirB away and ran script. Got "Error: dirB not found" error handling works for both directories.
+

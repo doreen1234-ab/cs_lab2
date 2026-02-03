@@ -1,0 +1,85 @@
+1. nano signal_demo.c
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <signal.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+
+
+int should_exit = 0;
+void handle_sigterm(int sig) {
+    printf("\nParent received SIGTERM signal (%d)\n", sig);
+    printf("SIGTERM means terminate gracefully. Cleaning up...\n");
+    should_exit = 1;
+}
+void handle_sigint(int sig) {
+    printf("\nParent received SIGINT signal (%d)\n", sig);
+    printf("SIGINT usually comes from Ctrl+C. Exiting now...\n");
+    should_exit = 1;
+}
+
+int main() {
+    pid_t pid1, pid2;
+    
+    printf("SIGNAL HANDLING DEMO\n");
+    printf("Parent process started. PID: %d\n", getpid());
+    printf("Parent will run until interrupted by signals.\n\n");
+    
+   
+    signal(SIGTERM, handle_sigterm);
+    signal(SIGINT, handle_sigint);
+    
+   
+    pid1 = fork();
+    if (pid1 == 0) {
+        
+        printf("Child 1 created. PID: %d\n", getpid());
+        printf("Child 1: Will send SIGTERM to parent in 5 seconds...\n");
+        sleep(5);
+        
+       
+        kill(getppid(), SIGTERM);
+        printf("Child 1: SIGTERM sent to parent. Child 1 exiting.\n");
+        exit(0);
+    }
+    
+ 
+    pid2 = fork();
+    if (pid2 == 0) {
+        
+        printf("Child 2 created. PID: %d\n", getpid());
+        printf("Child 2: Will send SIGINT to parent in 10 seconds...\n");
+        sleep(10);
+        
+       
+        kill(getppid(), SIGINT);
+        printf("Child 2: SIGINT sent to parent. Child 2 exiting.\n");
+        exit(0);
+    }
+        printf("\nParent process running. Waiting for signals...\n");
+    printf("Press Ctrl+C to test immediate SIGINT, or wait for children.\n\n");
+    
+    while (!should_exit) {
+        printf("Parent: Still running...\n");
+        sleep(1);  // Sleep for 1 second
+    }
+        printf("\nCleaning up child processes...\n");
+    wait(NULL);  
+    wait(NULL);  
+    printf("\nPROGRAM EXITING GRACEFULLY\n");
+    return 0;
+}
+
+2. gcc -o signal_demo signal_demo.c
+
+3. ./signal_demo
+
+4. View the C source code
+cat signal_demo.c
+
+5. Test by pressing Ctrl+C during execution
+(Run program and press Ctrl+C after 2-3 seconds)
+./signal_demo
+

@@ -1,0 +1,46 @@
+Commands
+
+1. Create the script
+nano analyze.sh
+
+#!/bin/bash
+if [ $# -ne 1 ]; then
+echo "Error: Please provide exactly one argument"
+exit 1
+fi
+if [ ! -e "$1" ]; then
+echo "Error: '$1' does not exist"
+exit 1
+fi
+if [ -f "$1" ]; then
+echo "File: $1"
+lines=$(wc -l < "$1")
+words=$(wc -w < "$1")
+chars=$(wc -m < "$1")
+echo "Lines: $lines"
+echo "Words: $words"
+echo "Characters: $chars"
+elif [ -d "$1" ]; then
+echo "Directory: $1"
+total_files=$(find "$1" -type f | wc -l)
+txt_files=$(find "$1" -type f -name "*.txt" | wc -l)
+echo "Total files: $total_files"
+echo "Text files (.txt): $txt_files"
+fi
+
+ 2. Make it runnable
+chmod +x analyze.sh
+
+ 3. Make a test file
+echo "Hello World" > test.txt
+
+ 4. Make a test folder
+mkdir test_folder
+echo "File one" > test_folder/file1.txt
+echo "File two" > test_folder/file2.txt
+
+ 5. Test it
+./analyze.sh test.txt
+./analyze.sh test_folder
+./analyze.sh
+./analyze.sh nothinghere
